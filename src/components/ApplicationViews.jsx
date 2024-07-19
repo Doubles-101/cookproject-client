@@ -4,6 +4,7 @@ import { Authorized } from "./Authorized"
 import { Login } from "../pages/Login.jsx"
 import Home from "../pages/Home"
 import { Register } from '../pages/Register.jsx'
+import { RecipeList } from './RecipeList/RecipeList.jsx'
 
 
 export const ApplicationViews = () => {
@@ -14,6 +15,7 @@ export const ApplicationViews = () => {
             <Route path="/register" element={<Register />} />
             <Route element={<Authorized />}>
                 <Route path="/" element={<Home />} />
+                <Route path="/recipelist" element={<RecipeList />} />
             </Route>
         </Routes>
     </BrowserRouter>
