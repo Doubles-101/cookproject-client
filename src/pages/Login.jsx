@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.css"
 
 export const Login = () => {
-    const [email, setEmail] = useState("steve@brownlee.com")
-    const [password, setPassword] = useState("brownlee")
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
     const existDialog = useRef()
     const navigate = useNavigate()
 
@@ -12,7 +12,10 @@ export const Login = () => {
         e.preventDefault()
         fetch(`http://localhost:8000/login`, {
             method: "POST",
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({
+                username: username,
+                password: password
+            }),
             headers: {
                 "Content-Type": "application/json"
             }
@@ -20,7 +23,7 @@ export const Login = () => {
             .then(res => res.json())
             .then(authInfo => {
                 if (authInfo.valid) {
-                    localStorage.setItem("rock_token", JSON.stringify(authInfo))
+                    localStorage.setItem("cook_token", JSON.stringify(authInfo))
                     navigate("/")
                 } else {
                     existDialog.current.showModal()
@@ -37,15 +40,15 @@ export const Login = () => {
 
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1 className="text-4xl mt-7 mb-3">Rock of Ages</h1>
+                    <h1 className="text-4xl mt-7 mb-3">Quick Cooks</h1>
                     <h2 className="text-xl mb-10">Please sign in</h2>
                     <fieldset className="mb-4">
-                        <label htmlFor="inputEmail"> Email address </label>
-                        <input type="email" id="inputEmail"
-                            value={email}
-                            onChange={evt => setEmail(evt.target.value)}
+                        <label htmlFor="inputusername"> username address </label>
+                        <input type="username" id="inputusername"
+                            value={username}
+                            onChange={evt => setUsername(evt.target.value)}
                             className="form-control"
-                            placeholder="Email address"
+                            placeholder="username address"
                             required autoFocus />
                     </fieldset>
                     <fieldset className="mb-4">
