@@ -5,6 +5,7 @@ import { Login } from "../pages/Login.jsx"
 import Home from "../pages/Home"
 import { Register } from '../pages/Register.jsx'
 import { RecipeList } from './RecipeList/RecipeList.jsx'
+import { RecipeDetail } from './RecipeDetail/RecipeDetail.jsx'
 
 
 export const ApplicationViews = () => {
@@ -16,6 +17,7 @@ export const ApplicationViews = () => {
             <Route element={<Authorized />}>
                 <Route path="/" element={<Home />} />
                 <Route path="/recipelist" element={<RecipeList />} />
+                <Route path="/recipeDetails/:recipeId" element={<RecipeDetail />} />
             </Route>
         </Routes>
     </BrowserRouter>
