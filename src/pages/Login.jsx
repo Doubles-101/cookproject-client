@@ -43,12 +43,12 @@ export const Login = () => {
                     <h1 className="text-4xl mt-7 mb-3">Quick Cooks</h1>
                     <h2 className="text-xl mb-10">Please sign in</h2>
                     <fieldset className="mb-4">
-                        <label htmlFor="inputusername"> username address </label>
+                        <label htmlFor="inputusername"> Username</label>
                         <input type="username" id="inputusername"
                             value={username}
                             onChange={evt => setUsername(evt.target.value)}
                             className="form-control"
-                            placeholder="username address"
+                            placeholder="Username"
                             required autoFocus />
                     </fieldset>
                     <fieldset className="mb-4">
