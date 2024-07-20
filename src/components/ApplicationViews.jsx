@@ -6,6 +6,7 @@ import Home from "../pages/Home"
 import { Register } from '../pages/Register.jsx'
 import { RecipeList } from './RecipeList/RecipeList.jsx'
 import { RecipeDetail } from './RecipeDetail/RecipeDetail.jsx'
+import { ProfileDetail } from './Profile/ProfileDetail.jsx'
 
 
 export const ApplicationViews = () => {
@@ -18,6 +19,7 @@ export const ApplicationViews = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/recipelist" element={<RecipeList />} />
                 <Route path="/recipeDetails/:recipeId" element={<RecipeDetail />} />
+                <Route path='/profile/:profileId' element={<ProfileDetail />} />
             </Route>
         </Routes>
     </BrowserRouter>
