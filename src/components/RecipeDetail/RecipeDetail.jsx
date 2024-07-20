@@ -26,6 +26,9 @@ export const RecipeDetail = () => {
         <div>
             <div>{currentRecipe.title}</div>
             <div>{currentRecipe.description}</div>
+            <div>Time:  <div>{currentRecipe.time} Minutes</div></div>
+            <div>Categories:  {currentRecipe.categories?.map(category => <div key={category.id}>{category.name}</div>)}</div>
+            <div>Ingredients:  <div>{currentRecipe.ingredients}</div></div>
             <div>{currentRecipe.instructions}</div>
         </div>
     )
