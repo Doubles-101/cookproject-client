@@ -12,7 +12,6 @@ export const CreateRecipe = () => {
     })
     const [categoriesList, setCategoriesList] = useState([])
     const [selectedCategories, setSelectedCategories] = useState([])
-    const [imgString, setImageString] = useState("")
 
     const navigate = useNavigate()
 
@@ -27,13 +26,22 @@ export const CreateRecipe = () => {
     }
 
     const postNewRecipe = async () => {
+        const requestBody = {
+            title: formData.title,
+            description: formData.description,
+            instructions: formData.instructions,
+            ingredients: formData.ingredients,
+            time: formData.time,
+            categories: selectedCategories 
+        }
+
         const response = await fetch(`http://localhost:8000/recipes`, {
             method: "POST",
             headers: {
                 "Authorization": `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`,
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({formData})
+            body: JSON.stringify(requestBody)
         })
         const parsedJSONString = await response.json()
     }
@@ -54,20 +62,6 @@ export const CreateRecipe = () => {
         )
     }
 
-    const getBase64 = (file, callback) => {
-        const reader = new FileReader();
-        reader.addEventListener('load', () => callback(reader.result));
-        reader.readAsDataURL(file);
-    }
-    
-    const createRecipeImageString = (event) => {
-        getBase64(event.target.files[0], (base64ImageString) => {
-            console.log("Base64 of file is", base64ImageString);
-    
-            setImageString(base64ImageString)
-        })
-    }
-
     const handleSubmit = (e) => {
         e.preventDefault()
 
@@ -83,7 +77,7 @@ export const CreateRecipe = () => {
             return
         }
         postNewRecipe()
-        /* navigate(`/profile/${profileId}`) */
+        navigate(`/recipelist`)
     }
 
     useEffect(() => {
@@ -160,11 +154,6 @@ export const CreateRecipe = () => {
                             </div>
                         ))}
                     </div>
-                </div>
-                <div>
-                    <input type="file" id="recipe_image" onChange={createRecipeImageString} />
-                    {/* <input type="hidden" name="recipe_id" value={gameDetails.id} /> */}
-                    <button className="button p-2 m-2 bg-blue-500 text-white" onClick={console.log("wow")}>Upload</button>
                 </div>
                 <div>
                     <button
