@@ -8,6 +8,7 @@ import { RecipeList } from './RecipeList/RecipeList.jsx'
 import { RecipeDetail } from './RecipeDetail/RecipeDetail.jsx'
 import { ProfileDetail } from './Profile/ProfileDetail.jsx'
 import { EditProfile } from './Profile/EditProfile.jsx'
+import { CreateRecipe } from './CreateRecipe/CreateRecipe.jsx'
 
 
 export const ApplicationViews = () => {
@@ -19,6 +20,7 @@ export const ApplicationViews = () => {
             <Route element={<Authorized />}>
                 <Route path="/" element={<Home />} />
                 <Route path="/recipelist" element={<RecipeList />} />
+                <Route path="/createRecipe" element={<CreateRecipe />} />
                 <Route path="/recipeDetails/:recipeId" element={<RecipeDetail />} />
                 <Route path='/profile/:profileId' element={<ProfileDetail />} />
                 <Route path='/editProfile/:profileId' element={<EditProfile />} />
