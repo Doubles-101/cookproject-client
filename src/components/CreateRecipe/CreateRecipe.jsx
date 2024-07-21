@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 
 export const CreateRecipe = () => {
@@ -11,6 +12,9 @@ export const CreateRecipe = () => {
     })
     const [categoriesList, setCategoriesList] = useState([])
     const [selectedCategories, setSelectedCategories] = useState([])
+    const [imgString, setImageString] = useState("")
+
+    const navigate = useNavigate()
 
     const fetchCategoriesList = async () => {
         const response = await fetch(`http://localhost:8000/categories`, {
@@ -20,6 +24,18 @@ export const CreateRecipe = () => {
         })
         const category = await response.json()
         setCategoriesList(category)
+    }
+
+    const postNewRecipe = async () => {
+        const response = await fetch(`http://localhost:8000/recipes`, {
+            method: "POST",
+            headers: {
+                "Authorization": `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({formData})
+        })
+        const parsedJSONString = await response.json()
     }
 
     const handleChange = (e) => {
@@ -38,10 +54,36 @@ export const CreateRecipe = () => {
         )
     }
 
+    const getBase64 = (file, callback) => {
+        const reader = new FileReader();
+        reader.addEventListener('load', () => callback(reader.result));
+        reader.readAsDataURL(file);
+    }
+    
+    const createRecipeImageString = (event) => {
+        getBase64(event.target.files[0], (base64ImageString) => {
+            console.log("Base64 of file is", base64ImageString);
+    
+            setImageString(base64ImageString)
+        })
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        updateCurrentUserDetails(),
-        navigate(`/profile/${profileId}`)
+
+        if (
+            !formData.title ||
+            !formData.description ||
+            !formData.instructions ||
+            !formData.ingredients ||
+            !formData.time ||
+            selectedCategories.length === 0
+        ) {
+            window.alert("Please fill out all fields and select at least one category.")
+            return
+        }
+        postNewRecipe()
+        /* navigate(`/profile/${profileId}`) */
     }
 
     useEffect(() => {
@@ -118,6 +160,11 @@ export const CreateRecipe = () => {
                             </div>
                         ))}
                     </div>
+                </div>
+                <div>
+                    <input type="file" id="recipe_image" onChange={createRecipeImageString} />
+                    {/* <input type="hidden" name="recipe_id" value={gameDetails.id} /> */}
+                    <button className="button p-2 m-2 bg-blue-500 text-white" onClick={console.log("wow")}>Upload</button>
                 </div>
                 <div>
                     <button
