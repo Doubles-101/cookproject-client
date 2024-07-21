@@ -62,7 +62,7 @@ export const CreateRecipe = () => {
         )
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         if (
@@ -76,7 +76,7 @@ export const CreateRecipe = () => {
             window.alert("Please fill out all fields and select at least one category.")
             return
         }
-        postNewRecipe()
+        await postNewRecipe()
         navigate(`/recipelist`)
     }
 
