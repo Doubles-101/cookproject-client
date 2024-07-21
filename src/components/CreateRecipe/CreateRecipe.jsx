@@ -49,26 +49,47 @@ export const CreateRecipe = () => {
     }, [])
     
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className="max-w-2xl mx-auto p-4">
+            <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                    <label>Title:</label>
-                    <input type="text" name="title" value={formData.title} onChange={handleChange} />
+                    <label className="block text-sm font-medium text-gray-700">Title:</label>
+                    <input
+                        type="text"
+                        name="title"
+                        value={formData.title}
+                        onChange={handleChange}
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-white p-2 border focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    />
                 </div>
                 <div>
-                    <label>Description:</label>
-                    <textarea value={formData.description} name="description" onChange={handleChange} />
+                    <label className="block text-sm font-medium text-gray-700">Description:</label>
+                    <textarea
+                        name="description"
+                        value={formData.description}
+                        onChange={handleChange}
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-white p-2 border focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    />
                 </div>
                 <div>
-                    <label>Instructions:</label>
-                    <textarea value={formData.instructions} name="intructions" onChange={handleChange} />
+                    <label className="block text-sm font-medium text-gray-700">Instructions:</label>
+                    <textarea
+                        name="instructions"
+                        value={formData.instructions}
+                        onChange={handleChange}
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-white p-2 border focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    />
                 </div>
                 <div>
-                    <label>Ingredients:</label>
-                    <textarea value={formData.ingredients} name="ingredients" onChange={handleChange} />
+                    <label className="block text-sm font-medium text-gray-700">Ingredients:</label>
+                    <textarea
+                        name="ingredients"
+                        value={formData.ingredients}
+                        onChange={handleChange}
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-white p-2 border focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    />
                 </div>
                 <div>
-                    <label>Time (minutes):</label>
+                    <label className="block text-sm font-medium text-gray-700">Time (minutes):</label>
                     <input
                         type="number"
                         name="time"
@@ -76,23 +97,36 @@ export const CreateRecipe = () => {
                         min="1"
                         max="15"
                         onChange={handleChange}
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-white p-2 border focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     />
                 </div>
                 <div>
-                    <label>Categories:</label>
-                    {categoriesList.map(category => (
-                        <div key={category.id}>
-                            <input
-                                type="checkbox"
-                                id={`category-${category.id}`}
-                                checked={selectedCategories.includes(category.id)}
-                                onChange={() => handleCategoryChange(category.id)}
-                            />
-                            <label htmlFor={`category-${category.id}`}>{category.name}</label>
-                        </div>
-                    ))}
+                    <label className="block text-sm font-medium text-gray-700">Categories:</label>
+                    <div className="mt-2 space-y-2">
+                        {categoriesList.map(category => (
+                            <div key={category.id} className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    id={`category-${category.id}`}
+                                    checked={selectedCategories.includes(category.id)}
+                                    onChange={() => handleCategoryChange(category.id)}
+                                    className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                                />
+                                <label htmlFor={`category-${category.id}`} className="ml-2 block text-sm text-gray-900">
+                                    {category.name}
+                                </label>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-                <button type="submit">Submit</button>
+                <div>
+                    <button
+                        type="submit"
+                        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                        Submit
+                    </button>
+                </div>
             </form>
         </div>
     )
