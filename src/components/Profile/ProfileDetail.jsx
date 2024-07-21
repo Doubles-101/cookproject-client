@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 
 export const ProfileDetail = () => {
     const [currentUserDetails, setCurrentUserDetails] = useState({})
     const { profileId } = useParams()
+    const navigate = useNavigate()
 
     const fetchCurrentUserDetails = async () => {
         const response = await fetch(`http://localhost:8000/customers/${profileId}`, {
@@ -17,7 +18,7 @@ export const ProfileDetail = () => {
     }
 
     const handleEditProfile = () => {
-        
+        navigate(`/editProfile/${profileId}`)
     }
 
     const handleMyRecipes = () => {
