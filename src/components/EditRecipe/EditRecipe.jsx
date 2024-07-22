@@ -37,6 +37,7 @@ export const EditRecipe = () => {
         })
         const recipe = await response.json()
         setCurrentRecipe(recipe)
+        setSelectedCategories(recipe.categories.map(category => category.id))
     }
 
     const handleInputChange = (e) => {
