@@ -50,7 +50,7 @@ export const EditProfile = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        updateCurrentUserDetails(),
+        updateCurrentUserDetails()
         navigate(`/profile/${profileId}`)
     }
 
