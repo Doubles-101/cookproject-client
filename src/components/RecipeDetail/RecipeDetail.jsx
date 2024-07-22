@@ -30,6 +30,10 @@ export const RecipeDetail = () => {
         })
     }
 
+    const handleEdit = async () => {
+        navigate(`/editRecipe/${recipeId}`)
+    }
+
     const handleDelete = async () => {
         await deleteCurrentRecipe()
         navigate("/myRecipeList")
@@ -52,7 +56,9 @@ export const RecipeDetail = () => {
                 {customerId == currentRecipe.customer &&
                     <div>
                         <button className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 
-                        hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Edit</button>
+                        hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        onClick={handleEdit}
+                        >Edit</button>
                         <button className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 
                         hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-4"
                         onClick={handleDelete}
