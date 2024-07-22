@@ -12,6 +12,12 @@ export const NavBar = () => {
                 <NavLink className="text-left underline text-blue-600 hover:text-purple-700" to={"/recipelist"}>Recipes</NavLink>
             </li>
             <li className="navbar__item">
+                <NavLink className="text-left underline text-blue-600 hover:text-purple-700" to={"/createRecipe"}>Create Recipe</NavLink>
+            </li>
+            <li className="navbar__item">
+                <NavLink className="text-left underline text-blue-600 hover:text-purple-700" to={"/myRecipeList"}>My Recipes</NavLink>
+            </li>
+            <li className="navbar__item">
                 <NavLink className="text-left underline text-blue-600 hover:text-purple-700" to={"/"}>Profile</NavLink>
             </li>
             {
