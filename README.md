@@ -11,14 +11,14 @@
 
   <p align="center">
     <br />
-    <a href="https://github.com/Doubles-101/cookproject"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Doubles-101/cookproject-client/tree/main"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Doubles-101/cookproject">View Demo</a>
+    <a href="https://github.com/Doubles-101/cookproject-client/tree/main">View Demo</a>
     ·
-    <a href="https://github.com/Doubles-101/cookproject/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/Doubles-101/cookproject-client/tree/main/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
-    <a href="https://github.com/Doubles-101/cookproject/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/Doubles-101/cookproject-client/tree/main/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
 
@@ -147,7 +147,7 @@ Don't forget to give the project a star! Thanks again!
 ## Contact
 
 
-Project Link: [https://github.com/Doubles-101/cookproject](https://github.com/Doubles-101/cookproject)
+Project Link: [https://github.com/Doubles-101/cookproject-client/tree/main](https://github.com/Doubles-101/cookproject-client/tree/main)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
