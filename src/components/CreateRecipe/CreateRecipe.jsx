@@ -77,7 +77,7 @@ export const CreateRecipe = () => {
             return
         }
         await postNewRecipe()
-        navigate(`/recipelist`)
+        navigate(`/myRecipeList`)
     }
 
     useEffect(() => {

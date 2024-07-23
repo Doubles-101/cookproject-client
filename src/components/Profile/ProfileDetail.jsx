@@ -22,7 +22,7 @@ export const ProfileDetail = () => {
     }
 
     const handleMyRecipes = () => {
-        
+        navigate(`/myRecipeList`)
     }
 
     useEffect(() => {
