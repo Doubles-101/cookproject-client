@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 export const RecipeList = () => {
     const [allRecipes, setAllRecipes] = useState([])
     const [searchText, setSearchText] = useState("")
+    const [selectedOption, setSelectedOption] = useState("")
 
     const fetchAllRecipes = async () => {
         const response = await fetch(`http://localhost:8000/recipes`, {
@@ -26,6 +27,18 @@ export const RecipeList = () => {
         setAllRecipes(recipes)
     }
 
+    const fetchSelectedRecipes = async () => {
+        if (selectedOption !== "")
+            {const response = await fetch(`http://localhost:8000/recipes?orderby=${selectedOption}`, {
+                headers: {
+                    Authorization: `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`
+                }
+            })
+            const recipes = await response.json()
+            setAllRecipes(recipes)}
+        else {fetchAllRecipes()}
+    }
+
     useEffect(() => {
         fetchAllRecipes()
     }, [])
@@ -33,6 +46,10 @@ export const RecipeList = () => {
     useEffect(() => {
         fetchSearchedRecipes()
     }, [searchText])
+
+    useEffect(() => {
+        fetchSelectedRecipes()
+    }, [selectedOption])
 
     return (
         <div className="recipelist-container">
@@ -45,6 +62,13 @@ export const RecipeList = () => {
                     onChange={(event) => setSearchText(event.target.value)}
                     placeholder="Search"
                 />
+            </div>
+            <div>
+                <select value={selectedOption} onChange={(event) => {setSelectedOption(event.target.value)}}>
+                    <option value="">Select an option</option>
+                    <option value="time">Time</option>
+                    <option value="title">Title</option>
+                </select>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {
