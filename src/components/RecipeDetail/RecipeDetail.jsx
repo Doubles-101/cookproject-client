@@ -6,7 +6,6 @@ import { useNavigate, useParams } from "react-router-dom"
 export const RecipeDetail = () => {
     const [currentRecipe, setCurrentRecipe] = useState({})
     const [currentRecipeImage, setCurrentRecipeImage] = useState("")
-    const [imgString, setImageString] = useState("")
     const { recipeId } = useParams()
     const navigate = useNavigate()
 
@@ -32,21 +31,6 @@ export const RecipeDetail = () => {
         setCurrentRecipeImage(recipeimg)
     }
 
-    const postRecipePicture = async () => {
-        const response = await fetch(`http://localhost:8000/pictures`, {
-            method: "POST",
-            headers: {
-                "Authorization": `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                recipe_id: recipeId,
-                recipe_image: imgString
-            })
-        })
-        const parsedJSONString = await response.json()
-    }
-
     const deleteCurrentRecipe = async () => {
         await fetch(`http://localhost:8000/recipes/${recipeId}`, {
             method: "DELETE",
@@ -54,20 +38,6 @@ export const RecipeDetail = () => {
                 Authorization: `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`,
                 "Content-Type": "application/json"
             }
-        })
-    }
-
-    const getBase64 = (file, callback) => {
-        const reader = new FileReader();
-        reader.addEventListener('load', () => callback(reader.result));
-        reader.readAsDataURL(file);
-    }
-    
-    const createGameImageString = (event) => {
-        getBase64(event.target.files[0], (base64ImageString) => {
-            console.log("Base64 of file is", base64ImageString);
-    
-            setImageString(base64ImageString)
         })
     }
 
@@ -98,9 +68,6 @@ export const RecipeDetail = () => {
             <div>Categories:  {currentRecipe.categories?.map(category => <div key={category.id}>{category.name}</div>)}</div>
             <div>Ingredients:  <div>{currentRecipe.ingredients}</div></div>
             <div>{currentRecipe.instructions}</div>
-            <input type="file" id="game_image" onChange={createGameImageString} />
-            <input type="hidden" name="recipe_id" value={recipeId} />
-            <button className="button p-2 m-2 bg-blue-500 text-white" onClick={postRecipePicture}>Upload</button>
             <div>
                 {customerId == currentRecipe.customer &&
                     <div>
