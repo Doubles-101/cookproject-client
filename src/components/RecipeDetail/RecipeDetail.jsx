@@ -61,7 +61,7 @@ export const RecipeDetail = () => {
 
     return (
         <div>
-            {currentRecipeImage && <img src={currentRecipeImage.recipe_pic} alt="Recipe-Img" />}
+            {currentRecipeImage && <img src={currentRecipeImage.recipe_pic} alt="Recipe-Img" className="max-h-96 w-full object-contain"/>}
             <div>{currentRecipe.title}</div>
             <div>{currentRecipe.description}</div>
             <div>Time:  <div>{currentRecipe.time} Minutes</div></div>
