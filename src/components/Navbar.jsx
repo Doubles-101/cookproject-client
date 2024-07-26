@@ -1,45 +1,48 @@
+import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom"
-import "./Navbar.css"
 
 export const NavBar = () => {
     const navigate = useNavigate()
     const customerId =  JSON.parse(localStorage.getItem("cook_token")).id
+    const [isOpen, setIsOpen] = useState(false)
+
+    const handleToggle = () => {
+        setIsOpen(!isOpen)
+    }
 
     return (
-        <ul className="navbar pb-10">
-            <li className="navbar__item pl-10">
-                <NavLink className="text-left underline text-blue-600 hover:text-purple-700" to={"/"}>Home</NavLink>
-            </li>
-            <li className="navbar__item">
-                <NavLink className="text-left underline text-blue-600 hover:text-purple-700" to={"/recipelist"}>Recipes</NavLink>
-            </li>
-            <li className="navbar__item">
-                <NavLink className="text-left underline text-blue-600 hover:text-purple-700" to={"/createRecipe"}>Create Recipe</NavLink>
-            </li>
-            <li className="navbar__item">
-                <NavLink className="text-left underline text-blue-600 hover:text-purple-700" to={"/myRecipeList"}>My Recipes</NavLink>
-            </li>
-            <li className="navbar__item">
-                <NavLink className="text-left underline text-blue-600 hover:text-purple-700" to={`/profile/${customerId}`}>Profile</NavLink>
-            </li>
-            {
-                (localStorage.getItem("cook_token") !== null) ?
-                    <li className="navbar__item">
-                        <button className="underline text-blue-600 hover:text-purple-700"
-                            onClick={() => {
-                                localStorage.removeItem("cook_token")
-                                navigate('/login')
-                            }}
-                        >Logout</button>
-                    </li> :
-                    <>
-                        <li className="navbar__item">
-                            <NavLink className="text-left underline text-blue-600 hover:text-purple-700" to={"/login"}>Login</NavLink>
-                        </li>
-                        <li className="navbar__item">
-                            <NavLink className="text-left underline text-blue-600 hover:text-purple-700" to={"/register"}>Register</NavLink>
-                        </li>
-                    </>
-            }        </ul>
+        <div className="flex justify-between items-center w-[92%] mx-auto">
+            <div>
+                <img className="w-16" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStOB26e6FqhS8YWtkvN0L3cbFpupGF5VN8XA&s" alt="logo" />
+            </div>
+            <div className={`nav-links duration-500 md:static absolute bg-white md:min-h-fit min-h-[60vh] left-0 ${isOpen ? 'top-[9%]' : 'top-[-100%]'} md:w-auto w-full flex items-center px-5`}>
+                <ul className="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
+                    <li className="hover:text-gray-500">
+                        <NavLink className="" to={"/"}>Home</NavLink>
+                    </li>
+                    <li className="hover:text-gray-500">
+                        <NavLink className="" to={"/recipelist"}>Recipes</NavLink>
+                    </li>
+                    <li className="hover:text-gray-500">
+                        <NavLink className="" to={"/createRecipe"}>Create Recipe</NavLink>
+                    </li>
+                    <li className="hover:text-gray-500">
+                        <NavLink className="" to={"/myRecipeList"}>My Recipes</NavLink>
+                    </li>
+                    <li className="hover:text-gray-500">
+                        <NavLink className="" to={`/profile/${customerId}`}>Profile</NavLink>
+                    </li>      
+                </ul>
+            </div>
+            <div className="flex items-center gap-6">
+                <button className="bg-black text-white px-5 py-2 rounded-full hover:bg-gray-600 hover:text-black"
+                    onClick={() => {
+                        localStorage.removeItem("cook_token")
+                        navigate('/login')
+                    }}
+                >Logout</button>
+                <div className="text-3xl cursor-pointer md:hidden" ><ion-icon onClick={handleToggle} name={isOpen ? "close" : "menu"}></ion-icon></div>
+            </div>
+        </div>
     )
 }
