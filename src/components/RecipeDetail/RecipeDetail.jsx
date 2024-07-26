@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom"
 
 export const RecipeDetail = () => {
     const [currentRecipe, setCurrentRecipe] = useState({})
+    const [currentRecipeImage, setCurrentRecipeImage] = useState("")
     const { recipeId } = useParams()
     const navigate = useNavigate()
 
@@ -18,6 +19,16 @@ export const RecipeDetail = () => {
         })
         const recipe = await response.json()
         setCurrentRecipe(recipe)
+    }
+    
+    const fetchCurrentRecipeImage = async () => {
+        const response = await fetch(`http://localhost:8000/pictures/${recipeId}`, {
+            headers: {
+                Authorization: `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`
+            }
+        })
+        const recipeimg = await response.json()
+        setCurrentRecipeImage(recipeimg)
     }
 
     const deleteCurrentRecipe = async () => {
@@ -43,9 +54,14 @@ export const RecipeDetail = () => {
         fetchCurrentRecipe()
     }, [])
 
+    useEffect(() => {
+        fetchCurrentRecipeImage()
+    }, [])
+
 
     return (
         <div>
+            {currentRecipeImage && <img src={currentRecipeImage.recipe_pic} alt="Recipe-Img" className="max-h-96 w-full object-contain"/>}
             <div>{currentRecipe.title}</div>
             <div>{currentRecipe.description}</div>
             <div>Time:  <div>{currentRecipe.time} Minutes</div></div>
