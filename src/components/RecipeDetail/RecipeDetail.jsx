@@ -62,7 +62,7 @@ export const RecipeDetail = () => {
     return (
         <div>
             {currentRecipeImage && <img src={currentRecipeImage.recipe_pic} alt="Recipe-Img" className="max-h-96 w-full object-contain"/>}
-            <div>{currentRecipe.title}</div>
+            <div><h1>{currentRecipe.title}</h1></div>
             <div>{currentRecipe.description}</div>
             <div>Time:  <div>{currentRecipe.time} Minutes</div></div>
             <div>Categories:  {currentRecipe.categories?.map(category => <div key={category.id}>{category.name}</div>)}</div>
