@@ -2,8 +2,23 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-@layer base {
-    html {
-      font-family: "Proxima Nova", system-ui, sans-serif;
-    }
-  }
+body {
+  @apply font-primary text-[17px] leading-8;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  @apply leading-[120%];
+}
+
+.h1 {
+  @apply text-[36px] xl:text-[64px] font-semibold;
+}
+
+.btn {
+  @apply rounded-full uppercase tracking-[1.02px] flex items-center justify-center transition-all;
+}
+
+/* faq */
+.faq__item.open .faq__item.answer {
+  @apply h-full;
+}

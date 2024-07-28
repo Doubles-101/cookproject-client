@@ -41,8 +41,8 @@ export const ProfileDetail = () => {
                     <div>First Name:  {currentUserDetails.user?.first_name}</div>
                     <div>Last Name:  {currentUserDetails.user?.last_name}</div>
                 </div>
-            <div><button className="button bg-blue-500 p-2 m-2" onClick={handleEditProfile}>Edit Profile</button></div>
-            <div><button className="button bg-blue-500 p-2 m-2" onClick={handleMyRecipes}>My Recipes</button></div>
+            <div><button className="btn bg-blue-500 p-4 m-2" onClick={handleEditProfile}>Edit Profile</button></div>
+            <div><button className="btn bg-blue-500 p-4 m-2" onClick={handleMyRecipes}>My Recipes</button></div>
         </div>
     )
 }
