@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-
 export const CreateRecipe = () => {
     const [formData, setFormData] = useState({
         title: '',
@@ -12,6 +11,7 @@ export const CreateRecipe = () => {
     })
     const [categoriesList, setCategoriesList] = useState([])
     const [selectedCategories, setSelectedCategories] = useState([])
+    const [imgString, setImageString] = useState("")
 
     const navigate = useNavigate()
 
@@ -43,11 +43,39 @@ export const CreateRecipe = () => {
             },
             body: JSON.stringify(requestBody)
         })
-        const parsedJSONString = await response.json()
+        
+        if (response.ok) {
+            const recipe = await response.json()
+            return recipe.id
+        } else {
+            const error = await response.json()
+            throw new Error(error)
+        }
+    }
+
+    const postRecipeImage = async (recipeId) => {
+        const requestBody = {
+            recipe_id: recipeId,
+            recipe_image: imgString
+        }
+
+        const response = await fetch(`http://localhost:8000/recipeimages`, {
+            method: "POST",
+            headers: {
+                "Authorization": `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(requestBody)
+        })
+
+        if (!response.ok) {
+            const error = await response.json()
+            throw new Error(error)
+        }
     }
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value } = e.target
         setFormData({
             ...formData,
             [name]: value,
@@ -62,6 +90,19 @@ export const CreateRecipe = () => {
         )
     }
 
+    const getBase64 = (file, callback) => {
+        const reader = new FileReader()
+        reader.addEventListener('load', () => callback(reader.result))
+        reader.readAsDataURL(file)
+    }
+
+    const createRecipeImageString = (event) => {
+        getBase64(event.target.files[0], (base64ImageString) => {
+            console.log("Base64 of file is", base64ImageString)
+            setImageString(base64ImageString)
+        })
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -71,13 +112,20 @@ export const CreateRecipe = () => {
             !formData.instructions ||
             !formData.ingredients ||
             !formData.time ||
-            selectedCategories.length === 0
+            selectedCategories.length === 0 ||
+            !imgString
         ) {
-            window.alert("Please fill out all fields and select at least one category.")
+            window.alert("Please fill out all fields, select at least one category, and upload an image.")
             return
         }
-        await postNewRecipe()
-        navigate(`/myRecipeList`)
+
+        try {
+            const recipeId = await postNewRecipe()
+            await postRecipeImage(recipeId)
+            navigate(`/myRecipeList`)
+        } catch (error) {
+            console.error("Error creating recipe:", error)
+        }
     }
 
     useEffect(() => {
@@ -158,10 +206,14 @@ export const CreateRecipe = () => {
                         ))}
                     </div>
                 </div>
+                <div className="flex flex-col mb-4">
+                    <label className="text-gray-700 font-semibold m-2">Image:</label>
+                    <input type="file" id="recipe_image" onChange={createRecipeImageString} />
+                </div>
                 <button type="submit" className="w-full bg-black text-white py-2 rounded-full mt-4 hover:bg-blue-600 transition duration-300">
                     Submit
                 </button>
             </form>
         </div>
-    )    
+    )
 }
