@@ -85,47 +85,50 @@ export const CreateRecipe = () => {
     }, [])
     
     return (
-        <div className="max-w-2xl mx-auto p-4">
-            <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Title:</label>
+        <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
+            <div className="mb-6 text-center">
+                <h1 className="text-3xl font-bold text-gray-900">Create Recipe</h1>
+            </div>
+            <form onSubmit={handleSubmit}>
+                <div className="flex flex-col mb-4">
+                    <label className="text-gray-700 font-semibold m-2">Title:</label>
                     <input
                         type="text"
                         name="title"
                         value={formData.title}
                         onChange={handleChange}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-white p-2 border focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="p-2 border border-gray-300 rounded"
                     />
                 </div>
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Description:</label>
+                <div className="flex flex-col mb-4">
+                    <label className="text-gray-700 font-semibold m-2">Description:</label>
                     <textarea
                         name="description"
                         value={formData.description}
                         onChange={handleChange}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-white p-2 border focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="p-2 border border-gray-300 rounded"
                     />
                 </div>
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Instructions:</label>
+                <div className="flex flex-col mb-4">
+                    <label className="text-gray-700 font-semibold m-2">Instructions:</label>
                     <textarea
                         name="instructions"
                         value={formData.instructions}
                         onChange={handleChange}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-white p-2 border focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="p-2 border border-gray-300 rounded"
                     />
                 </div>
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Ingredients:</label>
+                <div className="flex flex-col mb-4">
+                    <label className="text-gray-700 font-semibold m-2">Ingredients:</label>
                     <textarea
                         name="ingredients"
                         value={formData.ingredients}
                         onChange={handleChange}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-white p-2 border focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="p-2 border border-gray-300 rounded"
                     />
                 </div>
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Time (minutes):</label>
+                <div className="flex flex-col mb-4">
+                    <label className="text-gray-700 font-semibold m-2">Time (minutes):</label>
                     <input
                         type="number"
                         name="time"
@@ -133,11 +136,11 @@ export const CreateRecipe = () => {
                         min="1"
                         max="15"
                         onChange={handleChange}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-white p-2 border focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="p-2 border border-gray-300 rounded"
                     />
                 </div>
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Categories:</label>
+                <div className="flex flex-col mb-4">
+                    <label className="text-gray-700 font-semibold m-2">Categories:</label>
                     <div className="mt-2 space-y-2">
                         {categoriesList.map(category => (
                             <div key={category.id} className="flex items-center">
@@ -155,15 +158,10 @@ export const CreateRecipe = () => {
                         ))}
                     </div>
                 </div>
-                <div>
-                    <button
-                        type="submit"
-                        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                        Submit
-                    </button>
-                </div>
+                <button type="submit" className="w-full bg-black text-white py-2 rounded-full mt-4 hover:bg-blue-600 transition duration-300">
+                    Submit
+                </button>
             </form>
         </div>
-    )
+    )    
 }
