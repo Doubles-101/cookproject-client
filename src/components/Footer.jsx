@@ -6,7 +6,7 @@ export const Footer = () => {
                     <p>&copy; {new Date().getFullYear()} Quick Cooks. All rights reserved.</p>
                 </div>
                 <div>
-                    <img className="w-16" src="../media/imgs/Quick Cooks.png" alt="logo" />
+                    <img className="w-16" src="../media/imgs/QuickCooksWhite.png" alt="logo" />
                 </div>
             </div>
         </footer>
