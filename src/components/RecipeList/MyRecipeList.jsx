@@ -24,14 +24,22 @@ export const MyRecipeList = () => {
     }, [customerId])
 
     return (
-        <div className="myRecipeList-container">
-            <div className="header"><h1>My Recipes: </h1></div>
+        <div className="myRecipeList-container p-6 bg-gray-100 rounded-lg shadow-md">
+            <div className="mb-6 text-center">
+                <h1 className="text-3xl font-bold text-gray-900">My Recipes</h1>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {
-                    myRecipesArray.map(recipe => <div key={`key-${recipe.id}`} className="border p-5 border-solid hover:bg-blue-500 hover:text-violet-50 rounded-md border-violet-900 mt-5 bg-slate-50">
+                    myRecipesArray.map(recipe => 
+                        <div 
+                            key={`key-${recipe.id}`} 
+                            className="border p-5 border-solid hover:bg-gray-600 hover:text-white rounded-md border-gray-300 bg-white shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                         <div>
                             <Link to={`/recipeDetails/${recipe.id}`}>
-                                <div>{recipe.title} ({recipe.description})</div>
+                                <div>
+                                    <span className="font-bold text-lg">{recipe.title}</span>
+                                    <span className="text-gray-600"> ({recipe.description})</span>
+                                </div>
                             </Link>
                         </div>
                      </div>)
