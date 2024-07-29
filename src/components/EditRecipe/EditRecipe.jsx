@@ -88,63 +88,66 @@ export const EditRecipe = () => {
 
 
     return (
-    <div>
-        <form onSubmit={handleSave} className="space-y-6 bg-white p-8 rounded shadow-md">
-            <div className="flex flex-col">
-                <label className="text-gray-700 font-semibold mb-2" htmlFor="title">Title:</label>
-                <input 
-                    type="text" 
-                    id="title" 
-                    name="title" 
-                    value={currentRecipe.title} 
-                    onChange={handleInputChange} 
-                    className="p-2 border border-gray-300 rounded" 
-                />
+        <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
+            <div className="mb-6 text-center">
+                <h1 className="text-3xl font-bold text-gray-900">Edit Recipe</h1>
             </div>
-            <div className="flex flex-col">
-                <label className="text-gray-700 font-semibold mb-2" htmlFor="description">Description:</label>
-                <input 
-                    type="text" 
-                    id="description" 
-                    name="description" 
-                    value={currentRecipe.description} 
-                    onChange={handleInputChange} 
-                    className="p-2 border border-gray-300 rounded" 
-                />
-            </div>
-            <div className="flex flex-col">
-                <label className="text-gray-700 font-semibold mb-2" htmlFor="time">Time (Minutes):</label>
-                <input 
-                    type="number" 
-                    id="time" 
-                    name="time" 
-                    value={currentRecipe.time} 
-                    onChange={handleInputChange} 
-                    className="p-2 border border-gray-300 rounded" 
-                />
-            </div>
-            <div className="flex flex-col">
-                <label className="text-gray-700 font-semibold mb-2" htmlFor="ingredients">Ingredients:</label>
-                <textarea 
-                    id="ingredients" 
-                    name="ingredients" 
-                    value={currentRecipe.ingredients} 
-                    onChange={handleInputChange} 
-                    className="p-2 border border-gray-300 rounded" 
-                />
-            </div>
-            <div className="flex flex-col">
-                <label className="text-gray-700 font-semibold mb-2" htmlFor="instructions">Instructions:</label>
-                <textarea 
-                    id="instructions" 
-                    name="instructions" 
-                    value={currentRecipe.instructions} 
-                    onChange={handleInputChange} 
-                    className="p-2 border border-gray-300 rounded" 
-                />
-            </div>
-            <div>
-                    <label className="block text-sm font-medium text-gray-700">Categories:</label>
+            <form onSubmit={handleSave}>
+                <div className="flex flex-col mb-4">
+                    <label className="text-gray-700 font-semibold m-2" htmlFor="title">Title:</label>
+                    <input 
+                        type="text" 
+                        id="title" 
+                        name="title" 
+                        value={currentRecipe.title} 
+                        onChange={handleInputChange} 
+                        className="p-2 border border-gray-300 rounded" 
+                    />
+                </div>
+                <div className="flex flex-col mb-4">
+                    <label className="text-gray-700 font-semibold m-2" htmlFor="description">Description:</label>
+                    <input 
+                        type="text" 
+                        id="description" 
+                        name="description" 
+                        value={currentRecipe.description} 
+                        onChange={handleInputChange} 
+                        className="p-2 border border-gray-300 rounded" 
+                    />
+                </div>
+                <div className="flex flex-col mb-4">
+                    <label className="text-gray-700 font-semibold m-2" htmlFor="time">Time (Minutes):</label>
+                    <input 
+                        type="number" 
+                        id="time" 
+                        name="time" 
+                        value={currentRecipe.time} 
+                        onChange={handleInputChange} 
+                        className="p-2 border border-gray-300 rounded" 
+                    />
+                </div>
+                <div className="flex flex-col mb-4">
+                    <label className="text-gray-700 font-semibold m-2" htmlFor="ingredients">Ingredients:</label>
+                    <textarea 
+                        id="ingredients" 
+                        name="ingredients" 
+                        value={currentRecipe.ingredients} 
+                        onChange={handleInputChange} 
+                        className="p-2 border border-gray-300 rounded" 
+                    />
+                </div>
+                <div className="flex flex-col mb-4">
+                    <label className="text-gray-700 font-semibold m-2" htmlFor="instructions">Instructions:</label>
+                    <textarea 
+                        id="instructions" 
+                        name="instructions" 
+                        value={currentRecipe.instructions} 
+                        onChange={handleInputChange} 
+                        className="p-2 border border-gray-300 rounded" 
+                    />
+                </div>
+                <div className="flex flex-col mb-4">
+                    <label className="text-gray-700 font-semibold m-2">Categories:</label>
                     <div className="mt-2 space-y-2">
                         {categoriesList.map(category => (
                             <div key={category.id} className="flex items-center">
@@ -162,10 +165,10 @@ export const EditRecipe = () => {
                         ))}
                     </div>
                 </div>
-            <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded mt-4 hover:bg-blue-600 transition duration-300">
-                Save
-            </button>
-        </form>
-       </div> 
+                <button type="submit" className="w-full bg-black text-white py-2 rounded-full mt-4 hover:bg-blue-600 transition duration-300">
+                    Save
+                </button>
+            </form>
+        </div>
     )
 }

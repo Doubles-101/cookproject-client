@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-
 export const CreateRecipe = () => {
     const [formData, setFormData] = useState({
         title: '',
@@ -12,6 +11,7 @@ export const CreateRecipe = () => {
     })
     const [categoriesList, setCategoriesList] = useState([])
     const [selectedCategories, setSelectedCategories] = useState([])
+    const [imgString, setImageString] = useState("")
 
     const navigate = useNavigate()
 
@@ -43,11 +43,39 @@ export const CreateRecipe = () => {
             },
             body: JSON.stringify(requestBody)
         })
-        const parsedJSONString = await response.json()
+        
+        if (response.ok) {
+            const recipe = await response.json()
+            return recipe.id
+        } else {
+            const error = await response.json()
+            throw new Error(error)
+        }
+    }
+
+    const postRecipeImage = async (recipeId) => {
+        const requestBody = {
+            recipe_id: recipeId,
+            recipe_image: imgString
+        }
+
+        const response = await fetch(`http://localhost:8000/pictures`, {
+            method: "POST",
+            headers: {
+                "Authorization": `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(requestBody)
+        })
+
+        if (!response.ok) {
+            const error = await response.json()
+            throw new Error(error)
+        }
     }
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value } = e.target
         setFormData({
             ...formData,
             [name]: value,
@@ -62,6 +90,19 @@ export const CreateRecipe = () => {
         )
     }
 
+    const getBase64 = (file, callback) => {
+        const reader = new FileReader()
+        reader.addEventListener('load', () => callback(reader.result))
+        reader.readAsDataURL(file)
+    }
+
+    const createRecipeImageString = (event) => {
+        getBase64(event.target.files[0], (base64ImageString) => {
+            console.log("Base64 of file is", base64ImageString)
+            setImageString(base64ImageString)
+        })
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -71,13 +112,20 @@ export const CreateRecipe = () => {
             !formData.instructions ||
             !formData.ingredients ||
             !formData.time ||
-            selectedCategories.length === 0
+            selectedCategories.length === 0 ||
+            !imgString
         ) {
-            window.alert("Please fill out all fields and select at least one category.")
+            window.alert("Please fill out all fields, select at least one category, and upload an image.")
             return
         }
-        await postNewRecipe()
-        navigate(`/myRecipeList`)
+
+        try {
+            const recipeId = await postNewRecipe()
+            await postRecipeImage(recipeId)
+            navigate(`/myRecipeList`)
+        } catch (error) {
+            console.error("Error creating recipe:", error)
+        }
     }
 
     useEffect(() => {
@@ -85,47 +133,50 @@ export const CreateRecipe = () => {
     }, [])
     
     return (
-        <div className="max-w-2xl mx-auto p-4">
-            <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Title:</label>
+        <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
+            <div className="mb-6 text-center">
+                <h1 className="text-3xl font-bold text-gray-900">Create Recipe</h1>
+            </div>
+            <form onSubmit={handleSubmit}>
+                <div className="flex flex-col mb-4">
+                    <label className="text-gray-700 font-semibold m-2">Title:</label>
                     <input
                         type="text"
                         name="title"
                         value={formData.title}
                         onChange={handleChange}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-white p-2 border focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="p-2 border border-gray-300 rounded"
                     />
                 </div>
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Description:</label>
+                <div className="flex flex-col mb-4">
+                    <label className="text-gray-700 font-semibold m-2">Description:</label>
                     <textarea
                         name="description"
                         value={formData.description}
                         onChange={handleChange}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-white p-2 border focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="p-2 border border-gray-300 rounded"
                     />
                 </div>
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Instructions:</label>
+                <div className="flex flex-col mb-4">
+                    <label className="text-gray-700 font-semibold m-2">Instructions:</label>
                     <textarea
                         name="instructions"
                         value={formData.instructions}
                         onChange={handleChange}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-white p-2 border focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="p-2 border border-gray-300 rounded"
                     />
                 </div>
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Ingredients:</label>
+                <div className="flex flex-col mb-4">
+                    <label className="text-gray-700 font-semibold m-2">Ingredients:</label>
                     <textarea
                         name="ingredients"
                         value={formData.ingredients}
                         onChange={handleChange}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-white p-2 border focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="p-2 border border-gray-300 rounded"
                     />
                 </div>
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Time (minutes):</label>
+                <div className="flex flex-col mb-4">
+                    <label className="text-gray-700 font-semibold m-2">Time (minutes):</label>
                     <input
                         type="number"
                         name="time"
@@ -133,11 +184,11 @@ export const CreateRecipe = () => {
                         min="1"
                         max="15"
                         onChange={handleChange}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-white p-2 border focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="p-2 border border-gray-300 rounded"
                     />
                 </div>
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Categories:</label>
+                <div className="flex flex-col mb-4">
+                    <label className="text-gray-700 font-semibold m-2">Categories:</label>
                     <div className="mt-2 space-y-2">
                         {categoriesList.map(category => (
                             <div key={category.id} className="flex items-center">
@@ -155,14 +206,13 @@ export const CreateRecipe = () => {
                         ))}
                     </div>
                 </div>
-                <div>
-                    <button
-                        type="submit"
-                        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                        Submit
-                    </button>
+                <div className="flex flex-col mb-4">
+                    <label className="text-gray-700 font-semibold m-2">Image:</label>
+                    <input type="file" id="recipe_image" onChange={createRecipeImageString} />
                 </div>
+                <button type="submit" className="w-full bg-black text-white py-2 rounded-full mt-4 hover:bg-blue-600 transition duration-300">
+                    Submit
+                </button>
             </form>
         </div>
     )
