@@ -59,7 +59,7 @@ export const CreateRecipe = () => {
             recipe_image: imgString
         }
 
-        const response = await fetch(`http://localhost:8000/recipeimages`, {
+        const response = await fetch(`http://localhost:8000/pictures`, {
             method: "POST",
             headers: {
                 "Authorization": `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`,
