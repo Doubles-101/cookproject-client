@@ -31,18 +31,52 @@ export const ProfileDetail = () => {
 
 
     return (
-        <div>
-            <div>Profile</div>
-                <div>
-                    <div>Address:  {currentUserDetails.address}</div>
-                    <div>Phone Number:  {currentUserDetails.phone_number}</div>
-                    <div>Username:  {currentUserDetails.user?.username}</div>
-                    <div>Email:  {currentUserDetails.user?.email}</div>
-                    <div>First Name:  {currentUserDetails.user?.first_name}</div>
-                    <div>Last Name:  {currentUserDetails.user?.last_name}</div>
+        <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
+            <div className="mb-6 text-center">
+                <h1 className="text-3xl font-bold text-gray-900">Profile</h1>
+            </div>
+            <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                    <span className="font-semibold text-gray-800">Address:</span>
+                    <span className="text-gray-700">{currentUserDetails.address}</span>
                 </div>
-            <div><button className="btn bg-blue-500 p-4 m-2" onClick={handleEditProfile}>Edit Profile</button></div>
-            <div><button className="btn bg-blue-500 p-4 m-2" onClick={handleMyRecipes}>My Recipes</button></div>
+                <div className="flex justify-between items-center">
+                    <span className="font-semibold text-gray-800">Phone Number:</span>
+                    <span className="text-gray-700">{currentUserDetails.phone_number}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                    <span className="font-semibold text-gray-800">Username:</span>
+                    <span className="text-gray-700">{currentUserDetails.user?.username}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                    <span className="font-semibold text-gray-800">Email:</span>
+                    <span className="text-gray-700">{currentUserDetails.user?.email}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                    <span className="font-semibold text-gray-800">First Name:</span>
+                    <span className="text-gray-700">{currentUserDetails.user?.first_name}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                    <span className="font-semibold text-gray-800">Last Name:</span>
+                    <span className="text-gray-700">{currentUserDetails.user?.last_name}</span>
+                </div>
+            </div>
+            <div className="mt-6 flex space-x-4">
+                <button
+                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-full text-white bg-black 
+                    hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    onClick={handleEditProfile}
+                >
+                    Edit Profile
+                </button>
+                <button
+                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-full text-white bg-black
+                    hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    onClick={handleMyRecipes}
+                >
+                    My Recipes
+                </button>
+            </div>
         </div>
     )
 }

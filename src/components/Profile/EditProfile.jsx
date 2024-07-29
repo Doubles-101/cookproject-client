@@ -71,70 +71,75 @@ export const EditProfile = () => {
 
     
     return (
-        <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded shadow-md">
-            <div className="flex flex-col">
-                <label className="text-gray-700 font-semibold mb-2">Address:</label>
-                <input
-                type="text"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-                className="p-2 border border-gray-300 rounded"
-                />
+        <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
+            <div className="mb-6 text-center">
+                <h1 className="text-3xl font-bold text-gray-900">Edit Profile</h1>
             </div>
-            <div className="flex flex-col">
-                <label className="text-gray-700 font-semibold mb-2">Phone Number:</label>
-                <input
-                type="text"
-                name="phone_number"
-                value={formData.phone_number}
-                onChange={handleChange}
-                className="p-2 border border-gray-300 rounded"
-                />
-            </div>
-            <div className="flex flex-col">
-                <label className="text-gray-700 font-semibold mb-2">Username:</label>
-                <input
-                type="text"
-                name="username"
-                value={formData.username}
-                onChange={handleChange}
-                className="p-2 border border-gray-300 rounded"
-                />
-            </div>
-            <div className="flex flex-col">
-                <label className="text-gray-700 font-semibold mb-2">Email:</label>
-                <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="p-2 border border-gray-300 rounded"
-                />
-            </div>
-            <div className="flex flex-col">
-                <label className="text-gray-700 font-semibold mb-2">First Name:</label>
-                <input
-                type="text"
-                name="first_name"
-                value={formData.first_name}
-                onChange={handleChange}
-                className="p-2 border border-gray-300 rounded"
-                />
-            </div>
-            <div className="flex flex-col">
-                <label className="text-gray-700 font-semibold mb-2">Last Name:</label>
-                <input
-                type="text"
-                name="last_name"
-                value={formData.last_name}
-                onChange={handleChange}
-                className="p-2 border border-gray-300 rounded"
-                />
-            </div>
-            <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded mt-4 hover:bg-blue-600 transition duration-300">
-                Submit
-            </button>
-        </form>
+            <form onSubmit={handleSubmit} className="">
+                <div className="flex flex-col">
+                    <label className="text-gray-700 font-semibold m-2">Address:</label>
+                    <input
+                    type="text"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleChange}
+                    className="p-2 border border-gray-300 rounded"
+                    />
+                </div>
+                <div className="flex flex-col">
+                    <label className="text-gray-700 font-semibold m-2">Phone Number:</label>
+                    <input
+                    type="text"
+                    name="phone_number"
+                    value={formData.phone_number}
+                    onChange={handleChange}
+                    className="p-2 border border-gray-300 rounded"
+                    />
+                </div>
+                <div className="flex flex-col">
+                    <label className="text-gray-700 font-semibold m-2">Username:</label>
+                    <input
+                    type="text"
+                    name="username"
+                    value={formData.username}
+                    onChange={handleChange}
+                    className="p-2 border border-gray-300 rounded"
+                    />
+                </div>
+                <div className="flex flex-col">
+                    <label className="text-gray-700 font-semibold m-2">Email:</label>
+                    <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="p-2 border border-gray-300 rounded"
+                    />
+                </div>
+                <div className="flex flex-col">
+                    <label className="text-gray-700 font-semibold m-2">First Name:</label>
+                    <input
+                    type="text"
+                    name="first_name"
+                    value={formData.first_name}
+                    onChange={handleChange}
+                    className="p-2 border border-gray-300 rounded"
+                    />
+                </div>
+                <div className="flex flex-col">
+                    <label className="text-gray-700 font-semibold m-2">Last Name:</label>
+                    <input
+                    type="text"
+                    name="last_name"
+                    value={formData.last_name}
+                    onChange={handleChange}
+                    className="p-2 border border-gray-300 rounded"
+                    />
+                </div>
+                <button type="submit" className="w-full bg-black text-white py-2 rounded-full mt-4 hover:bg-blue-600 transition duration-300">
+                    Submit
+                </button>
+            </form>
+        </div>
     )
 }
