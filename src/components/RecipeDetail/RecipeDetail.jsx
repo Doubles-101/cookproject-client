@@ -60,27 +60,59 @@ export const RecipeDetail = () => {
 
 
     return (
-        <div>
-            {currentRecipeImage && <img src={currentRecipeImage.recipe_pic} alt="Recipe-Img" className="max-h-96 w-full object-contain"/>}
-            <div><h1>{currentRecipe.title}</h1></div>
-            <div>{currentRecipe.description}</div>
-            <div>Time:  <div>{currentRecipe.time} Minutes</div></div>
-            <div>Categories:  {currentRecipe.categories?.map(category => <div key={category.id}>{category.name}</div>)}</div>
-            <div>Ingredients:  <div>{currentRecipe.ingredients}</div></div>
-            <div>{currentRecipe.instructions}</div>
-            <div>
-                {customerId == currentRecipe.customer &&
-                    <div>
-                        <button className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 
+        <div className="max-w-2xl mx-auto p-4 bg-white rounded-lg shadow-md">
+            {currentRecipeImage && (
+                <img
+                    src={currentRecipeImage.recipe_pic}
+                    alt="Recipe-Img"
+                    className="max-h-96 w-full object-contain mb-4 rounded-lg"
+                />
+            )}
+            <div className="mb-4">
+                <h1 className="text-2xl font-bold text-gray-900 mb-2">{currentRecipe.title}</h1>
+                <p className="text-gray-700">{currentRecipe.description}</p>
+            </div>
+            <div className="mb-4">
+                <span className="font-semibold text-gray-800">Time: </span> 
+                <span className="text-gray-700">{currentRecipe.time} Minutes</span>
+            </div>
+            <div className="mb-4">
+                <span className="font-semibold text-gray-800">Categories: </span>
+                {currentRecipe.categories?.map(category => (
+                    <span
+                        key={category.id}
+                        className="inline-block bg-gray-200 text-gray-800 text-sm px-2 py-1 rounded-full mr-2"
+                    >
+                        {category.name}
+                    </span>
+                ))}
+            </div>
+            <div className="mb-4">
+                <span className="font-semibold text-gray-800">Ingredients:</span> 
+                <p className="text-gray-700">{currentRecipe.ingredients}</p>
+            </div>
+            <div className="mb-4 text-gray-700">
+                <span className="font-semibold text-gray-800">Instructions:</span> 
+                <p className="text-gray-700">{currentRecipe.instructions}</p>
+            </div>
+            {customerId === currentRecipe.customer && (
+                <div className="flex space-x-4">
+                    <button
+                        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-full text-white bg-black 
                         hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         onClick={handleEdit}
-                        >Edit</button>
-                        <button className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 
-                        hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-4"
+                    >
+                        Edit
+                    </button>
+                    <button
+                        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-full text-white bg-black
+                        hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                         onClick={handleDelete}
-                        >Delete</button>
-                    </div>}
-            </div>
+                    >
+                        Delete
+                    </button>
+                </div>
+            )}
         </div>
     )
 }
