@@ -40,6 +40,17 @@ export const RecipeList = () => {
     }
 
     useEffect(() => {
+        if (window.ScrollReveal) {
+          window.ScrollReveal().reveal('.recipeitem', { 
+            duration: 2000,
+            distance: '50px', 
+            easing: 'ease-in-out',
+            origin: 'bottom' 
+          })
+        }
+      }, [])
+
+    useEffect(() => {
         fetchAllRecipes()
     }, [])
 
@@ -85,7 +96,7 @@ export const RecipeList = () => {
                         >
                             <div>
                                 <Link to={`/recipeDetails/${recipe.id}`}>
-                                    <div>
+                                    <div className="recipeitem">
                                         <span className="font-bold text-lg">{recipe.title}</span>
                                         <span className="text-gray-600"> ({recipe.description})</span>
                                     </div>
