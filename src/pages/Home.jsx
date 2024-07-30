@@ -4,7 +4,7 @@ function Home() {
   useEffect(() => {
     if (window.ScrollReveal) {
       window.ScrollReveal().reveal('.headline', { 
-        duration: 2000,
+        duration: 1000,
         distance: '50px', 
         easing: 'ease-in-out',
         origin: 'left' 
@@ -12,9 +12,9 @@ function Home() {
     }
   }, [])
     return (
-      <main className='text-slate-900 pl-10 pr-10'>
-        <div className="headline">
-          <img src="../media/imgs/SplashArt.png" alt="welcome" />
+      <main className='text-slate-900'>
+        <div className="headline w-full">
+          <img src="../media/imgs/SplashArt.png" alt="welcome" className="w-full" />
         </div>
       </main>
     )

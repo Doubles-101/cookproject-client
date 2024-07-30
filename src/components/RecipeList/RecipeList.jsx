@@ -63,7 +63,7 @@ export const RecipeList = () => {
     }, [selectedOption])
 
     return (
-        <div className="recipelist-container p-6 bg-gray-100 rounded-lg shadow-md">
+        <div className="recipelist-container p-6 bg-gray-100 rounded-lg shadow-md m-4">
             <div className="flex flex-col sm:flex-row justify-start items-center w-[92%] mx-auto mb-6 space-y-4 sm:space-y-0 sm:space-x-4">
             <div className="w-full sm:w-auto">
                 <input 

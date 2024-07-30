@@ -11,7 +11,7 @@ export const NavBar = () => {
     }
 
     return (
-        <div className="flex justify-between items-center w-[92%] mx-auto pt-2">
+        <div className="flex justify-between items-center w-[92%] mx-auto pt-2 mb-3">
             <div>
                 <img className="w-16" src="../media/imgs/Quick Cooks.png" alt="logo" />
             </div>
