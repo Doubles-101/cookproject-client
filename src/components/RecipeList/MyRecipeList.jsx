@@ -24,7 +24,7 @@ export const MyRecipeList = () => {
     }, [customerId])
 
     return (
-        <div className="myRecipeList-container p-6 bg-gray-100 rounded-lg shadow-md">
+        <div className="myRecipeList-container p-6 m-4 bg-gray-100 rounded-lg shadow-md">
             <div className="mb-6 text-center">
                 <h1 className="text-3xl font-bold text-gray-900">My Recipes</h1>
             </div>
