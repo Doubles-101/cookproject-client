@@ -1,6 +1,17 @@
 import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 function Home() {
+  const navigate = useNavigate()
+
+  const handleButtonClick = () => {
+    navigate("/recipelist")
+  }
+
+  const handleSubmit = () => {
+    navigate("/")
+  }
+
   useEffect(() => {
     if (window.ScrollReveal) {
       window.ScrollReveal().reveal('.headline', { 
@@ -45,6 +56,7 @@ function Home() {
         <button
           className="inline-flex justify-center py-3 px-6 border border-transparent shadow-md text-lg font-medium rounded-full text-white bg-black
           hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          onClick={handleButtonClick}
         >
           See Recipes
         </button>
@@ -127,7 +139,7 @@ function Home() {
             <div className="testimonial bg-white p-6 rounded-lg shadow-md">
               <p className="text-lg text-gray-600 mb-4">"The variety of recipes on Quick Cooks is fantastic. I've discovered so many new favorites!"</p>
               <div className="flex items-center">
-                <img src="../media/imgs/juliesmith.webp" alt="Person 2" className="w-12 h-12 rounded-full mr-4 object-cover" />
+                <img src="../media/imgs/julie.jpg" alt="Person 2" className="w-12 h-12 rounded-full mr-4 object-cover" />
                 <div>
                   <p className="text-sm font-semibold text-gray-900">Julie Smith</p>
                   <p className="text-sm text-gray-500">Food Enthusiast</p>
@@ -145,6 +157,29 @@ function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* SignUp Section */}
+      <section className="signup bg-white py-12 mt-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-extrabold text-gray-900 mb-6">Stay Updated with Quick Cooks</h2>
+          <p className="text-lg text-gray-600 mb-6">Sign up for our newsletter to get the latest recipes and cooking tips delivered straight to your inbox.</p>
+          <form className="mt-6 sm:flex sm:justify-center" onSubmit={handleSubmit}>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              required
+            />
+            <button
+              type="submit"
+              className="mt-3 w-full sm:mt-0 sm:ml-4 sm:w-auto inline-flex justify-center py-2 px-4 border border-transparent shadow-md text-lg font-medium rounded-lg text-white bg-black
+              hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              Subscribe
+            </button>
+          </form>
         </div>
       </section>
 
