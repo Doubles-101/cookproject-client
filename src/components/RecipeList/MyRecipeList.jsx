@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 
 
 export const MyRecipeList = () => {
     const [myRecipesArray, setMyRecipesArray] = useState([])
 
+    const navigate = useNavigate()
     const customerId = JSON.parse(localStorage.getItem("cook_token")).id
 
     const fetchMyRecipes = async () => {
@@ -17,6 +18,10 @@ export const MyRecipeList = () => {
             const recipes = await response.json()
             setMyRecipesArray(recipes)
         }
+    }
+
+    const handleClick = () => {
+        navigate("/createRecipe")
     }
 
     useEffect(() => {
@@ -44,6 +49,17 @@ export const MyRecipeList = () => {
                         </div>
                      </div>)
                 }
+                {myRecipesArray.length === 0 && 
+                    <div className="col-span-full text-center">
+                    <p className="text-gray-600">You haven't created any recipes yet.</p>
+                    <button
+                        className="mt-4 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-full text-white bg-black hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        onClick={handleClick}
+                    >
+                        Create a Recipe
+                    </button>
+                </div>}
+
             </div>
         </div>
     )
