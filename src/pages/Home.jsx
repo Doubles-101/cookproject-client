@@ -8,6 +8,10 @@ function Home() {
     navigate("/recipelist")
   }
 
+  const handleBlogClick = () => {
+    navigate("/bloglist")
+  }
+
   const handleSubmit = () => {
     navigate("/")
   }
@@ -35,6 +39,16 @@ function Home() {
   useEffect(() => {
     if (window.ScrollReveal) {
       window.ScrollReveal().reveal('.subheader', { 
+        duration: 2000,
+        distance: '50px', 
+        easing: 'ease-in-out',
+        origin: 'left' 
+      })
+    }
+  }, [])
+  useEffect(() => {
+    if (window.ScrollReveal) {
+      window.ScrollReveal().reveal('.testimonial', { 
         duration: 2000,
         distance: '50px', 
         easing: 'ease-in-out',
@@ -160,8 +174,23 @@ function Home() {
         </div>
       </section>
 
+      {/* Blog Section */}
+      <section className="bg-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-extrabold text-gray-900 mb-6">Explore Our Blog</h2>
+          <p className="text-lg text-gray-600 mb-6">Dive into our latest articles and discover tips, tricks, and stories that will inspire your cooking journey.</p>
+          <button
+            className="inline-flex justify-center py-3 px-6 border border-transparent shadow-md text-lg font-medium rounded-full text-white bg-black
+            hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            onClick={handleBlogClick}
+          >
+            Visit Blog
+          </button>
+        </div>
+      </section>
+
       {/* SignUp Section */}
-      <section className="signup bg-white py-12 mt-12">
+      <section className="signup bg-gray-100 py-12 mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-extrabold text-gray-900 mb-6">Stay Updated with Quick Cooks</h2>
           <p className="text-lg text-gray-600 mb-6">Sign up for our newsletter to get the latest recipes and cooking tips delivered straight to your inbox.</p>
