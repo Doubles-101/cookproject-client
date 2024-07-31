@@ -26,16 +26,21 @@ export const BlogList = () => {
                     allBlogs.map(blog => (
                         <div 
                             key={`key-${blog.id}`} 
-                            className="border p-5 border-solid hover:bg-gray-600 hover:text-white rounded-md border-gray-300 bg-white shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+                            className="border border-gray-300 bg-white shadow-md rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:shadow-lg hover:-translate-y-1"
                         >
-                            <div>
-                                <Link to={`/blogDetails/${blog.id}`}>
-                                    <div className="blogitem">
-                                        <span className="font-bold text-lg">{blog.title}</span>
-                                        <span className="text-gray-600"> ({blog.blog_pic})</span>
+                            <Link to={`/blogDetails/${blog.id}`}>
+                                <div className="p-5">
+                                    <div className="mb-4">
+                                        <img 
+                                            src={blog.blog_pic} 
+                                            alt={blog.title} 
+                                            className="w-full h-48 object-cover rounded-t-lg"
+                                        />
                                     </div>
-                                </Link>
-                            </div>
+                                    <h1 className="text-2xl font-bold text-gray-800 mb-3">{blog.title}</h1>
+                                    <p className="text-gray-600">{blog.article.substring(0, 100)}...</p>
+                                </div>
+                            </Link>
                         </div>
                     ))
                 }
