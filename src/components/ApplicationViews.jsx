@@ -11,6 +11,7 @@ import { EditProfile } from './Profile/EditProfile.jsx'
 import { CreateRecipe } from './CreateRecipe/CreateRecipe.jsx'
 import { MyRecipeList } from './RecipeList/MyRecipeList.jsx'
 import { EditRecipe } from './EditRecipe/EditRecipe.jsx'
+import { BlogList } from './Blog/BlogList.jsx'
 
 
 export const ApplicationViews = () => {
@@ -28,6 +29,7 @@ export const ApplicationViews = () => {
                 <Route path="/editRecipe/:recipeId" element={<EditRecipe />} />
                 <Route path='/profile/:profileId' element={<ProfileDetail />} />
                 <Route path='/editProfile/:profileId' element={<EditProfile />} />
+                <Route path="/bloglist" element={<BlogList />} />
             </Route>
         </Routes>
     </BrowserRouter>
