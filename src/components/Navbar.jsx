@@ -36,6 +36,9 @@ export const NavBar = () => {
                     <li className="hover:text-gray-500">
                         <NavLink className="" to={`/profile/${customerId}`}>Profile</NavLink>
                     </li>      
+                    <li className="hover:text-gray-500">
+                        <NavLink className="" to={`/bloglist`}>Blog</NavLink>
+                    </li>      
                 </ul>
             </div>
             <div className="flex items-center gap-6">
