@@ -9,7 +9,7 @@ export const BlogDetail = () => {
     const navigate = useNavigate()
 
     const fetchCurrentBlog = async () => {
-        const response = await fetch(`http://localhost:8000/blogs/${blogId}`, {
+        const response = await fetch(`https://quick-cooks-api-7qoji.ondigitalocean.app/blogs/${blogId}`, {
             headers: {
                 Authorization: `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`
             }

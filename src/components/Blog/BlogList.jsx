@@ -6,7 +6,7 @@ export const BlogList = () => {
     const [allBlogs, setAllBlogs] = useState([])
 
     const fetchAllBlogs = async () => {
-        const response = await fetch(`http://localhost:8000/blogs`, {
+        const response = await fetch(`https://quick-cooks-api-7qoji.ondigitalocean.app/blogs`, {
             headers: {
                 Authorization: `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`
             }

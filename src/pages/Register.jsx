@@ -15,7 +15,7 @@ export const Register = () => {
 
     const handleRegister = (e) => {
         e.preventDefault()
-        fetch(`http://localhost:8000/register`, {
+        fetch(`https://quick-cooks-api-7qoji.ondigitalocean.app/register`, {
             method: "POST",
             body: JSON.stringify({
                 username: username,

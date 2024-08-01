@@ -10,7 +10,7 @@ export const MyRecipeList = () => {
 
     const fetchMyRecipes = async () => {
         if (customerId) {
-            const response = await fetch(`http://localhost:8000/recipes?customerId=${customerId}`, {
+            const response = await fetch(`https://quick-cooks-api-7qoji.ondigitalocean.app/recipes?customerId=${customerId}`, {
                 headers: {
                     Authorization: `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`
                 }

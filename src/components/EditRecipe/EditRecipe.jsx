@@ -20,7 +20,7 @@ export const EditRecipe = () => {
 
 
     const fetchCategoriesList = async () => {
-        const response = await fetch(`http://localhost:8000/categories`, {
+        const response = await fetch(`https://quick-cooks-api-7qoji.ondigitalocean.app/categories`, {
             headers: {
                 Authorization: `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`
             }
@@ -30,7 +30,7 @@ export const EditRecipe = () => {
     }
 
     const fetchCurrentRecipe = async () => {
-        const response = await fetch(`http://localhost:8000/recipes/${recipeId}`, {
+        const response = await fetch(`https://quick-cooks-api-7qoji.ondigitalocean.app/recipes/${recipeId}`, {
             headers: {
                 Authorization: `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`
             }
@@ -62,7 +62,7 @@ export const EditRecipe = () => {
             window.alert("Please select at least one category.")
             return
         }
-        const response = await fetch(`http://localhost:8000/recipes/${recipeId}`, {
+        const response = await fetch(`https://quick-cooks-api-7qoji.ondigitalocean.app/recipes/${recipeId}`, {
             method: 'PUT',
             headers: {
                 Authorization: `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`,

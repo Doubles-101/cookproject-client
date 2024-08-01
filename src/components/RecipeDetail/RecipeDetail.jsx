@@ -12,7 +12,7 @@ export const RecipeDetail = () => {
     const customerId = JSON.parse(localStorage.getItem("cook_token")).id
 
     const fetchCurrentRecipe = async () => {
-        const response = await fetch(`http://localhost:8000/recipes/${recipeId}`, {
+        const response = await fetch(`https://quick-cooks-api-7qoji.ondigitalocean.app/recipes/${recipeId}`, {
             headers: {
                 Authorization: `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`
             }
@@ -22,7 +22,7 @@ export const RecipeDetail = () => {
     }
     
     const fetchCurrentRecipeImage = async () => {
-        const response = await fetch(`http://localhost:8000/pictures/${recipeId}`, {
+        const response = await fetch(`https://quick-cooks-api-7qoji.ondigitalocean.app/pictures/${recipeId}`, {
             headers: {
                 Authorization: `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`
             }
@@ -32,7 +32,7 @@ export const RecipeDetail = () => {
     }
 
     const deleteCurrentRecipe = async () => {
-        await fetch(`http://localhost:8000/recipes/${recipeId}`, {
+        await fetch(`https://quick-cooks-api-7qoji.ondigitalocean.app/recipes/${recipeId}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`,
