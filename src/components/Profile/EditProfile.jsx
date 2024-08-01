@@ -17,7 +17,7 @@ export const EditProfile = () => {
     const navigate = useNavigate()
 
     const fetchCurrentUserDetails = async () => {
-        const response = await fetch(`http://localhost:8000/customers/${profileId}`, {
+        const response = await fetch(`https://quick-cooks-api-7qoji.ondigitalocean.app/customers/${profileId}`, {
             headers: {
                 Authorization: `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`
             }
@@ -27,7 +27,7 @@ export const EditProfile = () => {
     }
     
     const updateCurrentUserDetails = async () => {
-        const response = await fetch(`http://localhost:8000/customers/${profileId}`, {
+        const response = await fetch(`https://quick-cooks-api-7qoji.ondigitalocean.app/customers/${profileId}`, {
             method: "PUT",
             headers: {
                 Authorization: `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`,

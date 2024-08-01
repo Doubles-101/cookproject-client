@@ -8,7 +8,7 @@ export const RecipeList = () => {
     const [selectedOption, setSelectedOption] = useState("")
 
     const fetchAllRecipes = async () => {
-        const response = await fetch(`http://localhost:8000/recipes`, {
+        const response = await fetch(`https://quick-cooks-api-7qoji.ondigitalocean.app/recipes`, {
             headers: {
                 Authorization: `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`
             }
@@ -18,7 +18,7 @@ export const RecipeList = () => {
     }
 
     const fetchSearchedRecipes = async () => {
-        const response = await fetch(`http://localhost:8000/recipes?q=${searchText}`, {
+        const response = await fetch(`https://quick-cooks-api-7qoji.ondigitalocean.app/recipes?q=${searchText}`, {
             headers: {
                 Authorization: `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`
             }
@@ -29,7 +29,7 @@ export const RecipeList = () => {
 
     const fetchSelectedRecipes = async () => {
         if (selectedOption !== "")
-            {const response = await fetch(`http://localhost:8000/recipes?orderby=${selectedOption}`, {
+            {const response = await fetch(`https://quick-cooks-api-7qoji.ondigitalocean.app/recipes?orderby=${selectedOption}`, {
                 headers: {
                     Authorization: `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`
                 }
