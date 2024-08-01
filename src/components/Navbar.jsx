@@ -17,7 +17,7 @@ export const NavBar = () => {
     return (
         <div className="flex justify-between items-center w-[92%] mx-auto pt-2 mb-3">
             <div onClick={handleLogoClick} className="cursor-pointer">
-                <img className="w-16" src="../media/imgs/Quick Cooks.png" alt="logo" />
+                <img className="w-16" src={`/media/Quick Cooks.png`} alt="logo" />
             </div>
             <div className={`nav-links duration-500 md:static absolute bg-white md:min-h-fit min-h-[60vh] left-0 ${isOpen ? 'top-[9%]' : 'top-[-100%]'} md:w-auto w-full flex items-center px-5`}>
                 <ul className="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
