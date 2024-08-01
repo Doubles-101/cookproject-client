@@ -16,7 +16,7 @@ export const CreateRecipe = () => {
     const navigate = useNavigate()
 
     const fetchCategoriesList = async () => {
-        const response = await fetch(`http://localhost:8000/categories`, {
+        const response = await fetch(`https://quick-cooks-api-7qoji.ondigitalocean.app/categories`, {
             headers: {
                 Authorization: `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`
             }
@@ -35,7 +35,7 @@ export const CreateRecipe = () => {
             categories: selectedCategories 
         }
 
-        const response = await fetch(`http://localhost:8000/recipes`, {
+        const response = await fetch(`https://quick-cooks-api-7qoji.ondigitalocean.app/recipes`, {
             method: "POST",
             headers: {
                 "Authorization": `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`,
@@ -59,7 +59,7 @@ export const CreateRecipe = () => {
             recipe_image: imgString
         }
 
-        const response = await fetch(`http://localhost:8000/pictures`, {
+        const response = await fetch(`https://quick-cooks-api-7qoji.ondigitalocean.app/pictures`, {
             method: "POST",
             headers: {
                 "Authorization": `Token ${JSON.parse(localStorage.getItem("cook_token")).token}`,
