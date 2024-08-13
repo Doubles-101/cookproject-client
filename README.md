@@ -74,11 +74,24 @@ Life is already busy enough. Quick Cooks is a platform that offers delicious rec
 
 
 ## Getting Started:
-1. Clone this repository from Github
-2. Run `pipenv shell` to start the virtual environment
-3. Run `./seed_database.sh`
-4. Keep in mind this works in tandem with a backend project: https://github.com/Doubles-101/cookproject/tree/main 
-<!-- TODO: As more of the project is filled in add the other steps to get this project running -->
+1. This project is deployed! Check out https://quick-cook-client-nqvry.ondigitalocean.app/ 
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## Prerequisites
+1. Node.js 18.17 or later
+2. npm
+
+
+## Installation:
+1. The code is made for deployment, however if you would like to see the code in action here are the steps:
+2. Clone this repository from Github
+3. Navigate to the quickcooks directory
+4. Run npm install
+5. Run npm run dev
+6. Navigate to http://localhost:5173/ in your browser 
+7. (Keep in mind all fetch calls are made to call on an api that is already deployed)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
